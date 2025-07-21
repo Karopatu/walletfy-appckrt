@@ -4,14 +4,12 @@ import { toggleTheme, setTheme } from './store/themeSlice';
 import { setEvents } from './store/eventsSlice';
 import type { Event } from './types/event';
 
-// Importaciones de componentes Mantine
-import { AppShell, Group, Text, ActionIcon, useMantineColorScheme, useComputedColorScheme, Button } from '@mantine/core';
+import { AppShell, Group, Text, ActionIcon, useMantineColorScheme, useComputedColorScheme, Button } from '@mantine/core'; // Añade Container
 import { IconSun, IconMoon } from '@tabler/icons-react';
 
-// Importamos el componente BalanceFlow
 import BalanceFlow from './components/BalanceFlow';
-// Importamos el componente EventForm
-import EventForm from './components/EventForm'; // <-- DESCOMENTA ESTA LÍNEA
+import EventForm from './components/EventForm'; // Asegúrate de que esta línea esté descomentada
+
 
 
 const App: React.FC = () => {
@@ -62,6 +60,7 @@ const App: React.FC = () => {
   const handleToggleTheme = () => {
     const newTheme = computedColorScheme === 'light' ? 'dark' : 'light';
     dispatch(toggleTheme());
+    setColorScheme(newTheme); // Usa newTheme aquí directamente
   };
 
   const handleCreateEventClick = () => {

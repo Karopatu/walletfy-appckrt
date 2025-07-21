@@ -15,11 +15,9 @@ import {
   NumberInput,
   Select,
   Button,
-  Group,
   Text,
   Stack,
-  FileInput, // Para el campo Adjunto
-  rem // Para unidades de rem en estilos
+  FileInput
 } from '@mantine/core';
 import { DateInput } from '@mantine/dates'; // Para la entrada de fecha
 

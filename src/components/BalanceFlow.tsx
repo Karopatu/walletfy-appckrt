@@ -2,30 +2,30 @@ import { useState, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { setInitialBalance } from '../store/balanceSlice';
 import type { Event } from '../types/event';
-import Moment from 'moment'; // Mantenemos Moment.js para el formato de fecha
+import Moment from 'moment';
 import {
   Container,
   Paper,
   TextInput,
   Text,
-  Button,
+  //Button, //
   Group,
   Stack,
   Collapse,
   ActionIcon,
   Badge,
-} from '@mantine/core'; // Importamos componentes Mantine
-import { IconChevronDown, IconChevronUp, IconPencil, IconTrash } from '@tabler/icons-react'; // Iconos para expandir/colapsar y acciones
+} from '@mantine/core';
+import { IconChevronDown, IconChevronUp, IconPencil } from '@tabler/icons-react'; // IconTrash está aquí, pero su uso está comentado
 
 
 // Componente para mostrar un solo evento
 interface EventItemProps {
   event: Event;
-  onEdit: (event: Event) => void; // Para la funcionalidad de edición
-  onDelete: (id: string) => void; // Para la funcionalidad de eliminación (extra)
+  onEdit: (event: Event) => void;
+  onDelete: (id: string) => void; // Esta prop se usará cuando se descomente el botón
 }
 
-const EventItem: React.FC<EventItemProps> = ({ event, onEdit, onDelete }) => {
+const EventItem: React.FC<EventItemProps> = ({ event, onEdit }) => {
   const isIncome = event.type === 'ingreso';
   const amountColor = isIncome ? 'green.6' : 'red.6';
 
@@ -52,7 +52,7 @@ const EventItem: React.FC<EventItemProps> = ({ event, onEdit, onDelete }) => {
         <ActionIcon variant="subtle" color="gray" onClick={() => onEdit(event)} aria-label="Editar evento">
           <IconPencil size={18} />
         </ActionIcon>
-        {/* Aquí irá el botón de eliminar para puntos extra */}
+        {/* Descomenta la siguiente línea CUANDO VAYAS A IMPLEMENTAR LA FUNCIONALIDAD DE ELIMINAR */}
         {/* <ActionIcon variant="subtle" color="red" onClick={() => onDelete(event.id)} aria-label="Eliminar evento">
           <IconTrash size={18} />
         </ActionIcon> */}
