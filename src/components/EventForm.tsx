@@ -225,7 +225,7 @@ const EventForm: React.FC<EventFormProps> = ({ initialEvent, onSave }) => {
               required
             />
 
-            [cite_start]{/* Campo Adjunto (FileInput) - Punto Extra [cite: 63]*/}
+            
             <FileInput
               label="Adjunto (Imagen opcional)"
               placeholder="Arrastra o selecciona una imagen"
