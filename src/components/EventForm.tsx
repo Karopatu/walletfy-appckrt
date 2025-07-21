@@ -51,16 +51,10 @@ const EventForm: React.FC<EventFormProps> = ({ initialEvent, onSave }) => {
     if (initialEvent) {
       setFormData({
         ...initialEvent,
-        // Mantine DateInput espera un objeto Date, pero nuestro schema es string.
-        // Para el estado local del formulario, podemos manejarlo como Date temporalmente
-        // y convertirlo de nuevo a string antes de la validación/envío.
-        // O mantenerlo como string y asegurar que DateInput lo acepte.
-        // Por ahora, lo mantenemos como string para que coincida con el schema,
         // DateInput puede parsear un string YYYY-MM-DD.
         date: Moment(initialEvent.date).format('YYYY-MM-DD'),
       });
     } else {
-      // Si no hay initialEvent, asegurarse de que el formulario esté limpio para crear uno nuevo
       setFormData({
         id: uuidv4(),
         name: '',
@@ -71,7 +65,7 @@ const EventForm: React.FC<EventFormProps> = ({ initialEvent, onSave }) => {
         attachment: null,
       });
     }
-    setErrors([]); // Limpiar errores al cambiar de evento o a nuevo
+    setErrors([]); 
   }, [initialEvent]);
 
   // Manejador de cambios para inputs de texto/número/select
@@ -118,8 +112,6 @@ const EventForm: React.FC<EventFormProps> = ({ initialEvent, onSave }) => {
     setErrors([]); // Limpiar errores previos
 
     try {
-      // Intentar parsear y validar los datos con Zod
-      // Asegurarse de que `amount` sea un número y `description`/`attachment` sean null si están vacíos
       const validatedData = eventSchema.parse({
         ...formData,
         amount: parseFloat(String(formData.amount)),
@@ -133,9 +125,7 @@ const EventForm: React.FC<EventFormProps> = ({ initialEvent, onSave }) => {
         dispatch(addEvent(validatedData));
       }
 
-      // Persistir los eventos actualizados en Local Storage
-      // Esta lógica de persistencia es vital y debe reflejar el estado actual de Redux.
-      // Aquí se hace de forma simplificada, re-leyendo del LS y volviendo a guardar.
+
       const updatedEventsString = localStorage.getItem('walletfyEvents');
       let updatedEvents: Event[] = updatedEventsString ? JSON.parse(updatedEventsString) : [];
 
